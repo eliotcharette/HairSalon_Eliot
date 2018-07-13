@@ -55,7 +55,7 @@ namespace HairSalon.Models
         itemStylistId = rdr.GetInt32(2);
       }
 
-      Client foundClient= new Client(itemClient, itemStylistId, itemId);
+      Client foundClient = new Client(itemClient, itemStylistId, itemId);
 
       conn.Close();
       if (conn != null)
@@ -65,29 +65,34 @@ namespace HairSalon.Models
 
       return foundClient;
     }
-    // public static List<Client> GetIndian()
-    // {
-    //   List<Client> allIndian = new List<Client> {};
-    //   MySqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-    //   cmd.CommandText = @"SELECT * FROM clients WHERE cuisine_id = 4;";
-    //   MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-    //   while(rdr.Read())
-    //   {
-    //     int itemId = rdr.GetInt32(0);
-    //     string itemClient = rdr.GetString(1);
-    //     int itemStylistId = rdr.GetInt32(2);
-    //     Client indianClient = new Client(itemClient, itemStylistId, itemId);
-    //     allIndian.Add(indianClient);
-    //   }
-    //   conn.Close();
-    //   if (conn != null)
-    //   {
-    //     conn.Dispose();
-    //   }
-    //   return allIndian;
-    // }
+    public static List<Client> FindByStylist(string myStylist)
+    {
+      List<Client> styleClients = new List<Client> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM `clients` WHERE stylist_id = @stylist_id;";
+      MySqlParameter searchStylist = new MySqlParameter();
+      searchStylist.ParameterName = "@Cuisine";
+      searchStylist.Value = myStylist;
+      cmd.Parameters.Add(searchStylist);
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int itemId = 0;
+        string itemClient = "";
+        int itemStylistId = 0;
+
+        Client newClient = new Client(itemClient, itemStylistId, itemId);
+        styleClients.Add(newClient);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return styleClients;
+    }
     public static List<Client> GetAll()
     {
       List<Client> allClient = new List<Client> {};

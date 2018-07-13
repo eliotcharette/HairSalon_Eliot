@@ -24,14 +24,13 @@ _No known bugs._
 ## Support and contact details
 
 _Eliot Charette email: eliotcharette@gmail.com_
-_ email: _
 
 ## Technologies Used
 
-_Created with Atom editor, .net framework, html, csharp.  Use any browser to view._
+_Created with Atom editor, using .net framework.  Use any browser to view._
 
 ### License
 
 *No license required*
 
-Copyright (c) 2018 **_Eliot Charette and _**
+Copyright (c) 2018 **_Eliot Charette_**

@@ -1,0 +1,16 @@
+@using HairSalon.Models;
+
+<h2>New Client Request Form</h2>
+<form action="/clients" method="post">
+  <label for="newClient">Client name: </label>
+  <input type="text" name="newClient">
+<label for="stylistId">Select your stylist</label>
+<select class="stylistSelect" name="stylistId">
+  @foreach(var stylist in Stylist.GetAll())
+  {
+    <option value="@stylist.GetId()">@stylist.GetStylist()</option>
+  }
+
+</select>
+<button type="submit" name="button">Confirm</button>
+</form>
