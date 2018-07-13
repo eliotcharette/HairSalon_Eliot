@@ -21,7 +21,7 @@ namespace HairSalon.Models
     {
       return _stylist;
     }
-    public int GetSpecialty()
+    public string GetSpecialty()
     {
       return _specialty;
     }
