@@ -71,11 +71,11 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM `clients` WHERE stylist_id = @stylist;";
-      MySqlParameter stylist = new MySqlParameter();
-      stylist.ParameterName = "@stylist";
-      stylist.Value = myStylist;
-      cmd.Parameters.Add(stylist);
+      cmd.CommandText = @"SELECT * FROM `clients` WHERE stylist_id = @thisStylist_id;";
+      MySqlParameter thisStylist_id = new MySqlParameter();
+      thisStylist_id.ParameterName = "@thisStylist_id";
+      thisStylist_id.Value = myStylist;
+      cmd.Parameters.Add(thisStylist_id);
       MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
       while(rdr.Read())
       {
@@ -93,6 +93,34 @@ namespace HairSalon.Models
       }
       return styleClients;
     }
+    // public static List<Client> FindByStylist(int myStylist)
+    // {
+    //   List<Client> styleClients = new List<Client> {};
+    //   MySqlConnection conn = DB.Connection();
+    //   conn.Open();
+    //   MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+    //   cmd.CommandText = @"SELECT * FROM `clients` WHERE stylist_id = @stylist;";
+    //   MySqlParameter stylist = new MySqlParameter();
+    //   stylist.ParameterName = "@stylist";
+    //   stylist.Value = myStylist;
+    //   cmd.Parameters.Add(stylist);
+    //   MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+    //   while(rdr.Read())
+    //   {
+    //     int itemId = 0;
+    //     string itemClient = "";
+    //     int itemStylistId = 0;
+    //
+    //     Client newClient = new Client(itemClient, itemStylistId, itemId);
+    //     styleClients.Add(newClient);
+    //   }
+    //   conn.Close();
+    //   if (conn != null)
+    //   {
+    //     conn.Dispose();
+    //   }
+    //   return styleClients;
+    // }
     public static List<Client> GetAll()
     {
       List<Client> allClient = new List<Client> {};

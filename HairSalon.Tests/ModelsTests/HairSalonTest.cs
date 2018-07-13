@@ -6,8 +6,12 @@ using System.Collections.Generic;
 namespace HairSalon.Tests
 {
   [TestClass]
-  public class HairSalonTests
+  public class HairSalonTests : IDisposable
   {
+    public void Dispose()
+    {
+      Stylist.DeleteAll();
+    }
     public HairSalonTests()
         {
             DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=eliot_charette_test;";
@@ -22,23 +26,7 @@ namespace HairSalon.Tests
 
       Assert.AreEqual(name, result);
     }
-    // [TestMethod]
-    // public void Edit_Test_Stylists()
-    // {
-    //   //Arrange
-    //   string firstName = "Applebees";
-    //   Stylist testStylist = new Stylist(firstName, "");
-    //   testStylist.Save();
-    //   string updatedName = "Ghettobees";
-    //
-    //   //Act
-    //   testStylist.Edit(updatedName);
-    //
-    //
-    //   string result = Stylist.Find(testStylist.GetId()).GetStylist();
-    //
-    //   Assert.AreEqual(updatedName, result);
-    // }
+
     [TestMethod]
     public void Save_SavesToDatabase_StylistList()
     {
