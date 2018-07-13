@@ -18,18 +18,18 @@ namespace HairSalon.Controllers
       return View(allClient);
     }
     [HttpPost("/clients")]
-    public ActionResult PostClient(int stylistId)
+    public ActionResult PostClientList()
     {
       Client newClient = new Client(Request.Form["newClient"], int.Parse(Request.Form["stylistId"]));
       newClient.Save();
-      return View("ClientList", Client.FindByStylist(stylistId));
+      return View("ClientList", Client.GetAll());
     }
-    // [HttpPost("/clients")]
-    // public ActionResult SimilarStylist(int stylistId)
-    // {
-    //  List<Client>  sameStyleClients = Client.FindByStylist(stylistId);
-    //  return View("ClientList", sameStyleClients);
-    // }
+    [HttpGet("/clients/{stylistId}")]
+    public ActionResult PostClient(int stylistId)
+    {
+      List<Client> sameStylistClients = Client.FindByStylist(stylistId);
+      return View("ClientList", sameStylistClients);
+    }
     [HttpPost("/client/delete")]
     public ActionResult DeleteOneClient(int clientId)
     {
