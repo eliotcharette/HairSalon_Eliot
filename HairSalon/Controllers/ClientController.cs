@@ -18,11 +18,11 @@ namespace HairSalon.Controllers
       return View(allClient);
     }
     [HttpPost("/clients")]
-    public ActionResult PostClient()
+    public ActionResult PostClient(int stylist)
     {
       Client newClient = new Client(Request.Form["newClient"], int.Parse(Request.Form["stylistId"]));
       newClient.Save();
-      return View("ClientList", Client.GetAll());
+      return View("ClientList", Client.FindByStylist(stylist));
     }
     [HttpPost("/client/delete")]
     public ActionResult DeleteOneClient(int clientId)
