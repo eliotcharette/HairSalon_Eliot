@@ -93,34 +93,6 @@ namespace HairSalon.Models
       }
       return styleClients;
     }
-    // public static List<Client> FindByStylist(int myStylist)
-    // {
-    //   List<Client> styleClients = new List<Client> {};
-    //   MySqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-    //   cmd.CommandText = @"SELECT * FROM `clients` WHERE stylist_id = @stylist;";
-    //   MySqlParameter stylist = new MySqlParameter();
-    //   stylist.ParameterName = "@stylist";
-    //   stylist.Value = myStylist;
-    //   cmd.Parameters.Add(stylist);
-    //   MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-    //   while(rdr.Read())
-    //   {
-    //     int itemId = 0;
-    //     string itemClient = "";
-    //     int itemStylistId = 0;
-    //
-    //     Client newClient = new Client(itemClient, itemStylistId, itemId);
-    //     styleClients.Add(newClient);
-    //   }
-    //   conn.Close();
-    //   if (conn != null)
-    //   {
-    //     conn.Dispose();
-    //   }
-    //   return styleClients;
-    // }
     public static List<Client> GetAll()
     {
       List<Client> allClient = new List<Client> {};
@@ -219,6 +191,22 @@ namespace HairSalon.Models
       cmd.CommandText = @"DELETE FROM `clients` WHERE Id = @thisId;";
 
       cmd.Parameters.Add(new MySqlParameter("@thisId", _id));
+
+      cmd.ExecuteNonQuery();
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+    public static void DeleteAll()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM clients;";
 
       cmd.ExecuteNonQuery();
 

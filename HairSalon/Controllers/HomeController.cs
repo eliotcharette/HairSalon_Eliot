@@ -13,23 +13,3 @@ namespace HairSalon.Controllers
     }
   }
 }
-// [HttpPost("/clients")]
-// public ActionResult similarStylist(string clients)
-// {
-//  List<Client>  sameStyleClients = Client.FindByStylist(clients);
-//  return View("ClientList", sameStyleClients);
-// }
-//
-// [HttpPost("/clients")]
-// public ActionResult PostClient()
-// {
-//   Client newClient = new Client(Request.Form["newClient"], int.Parse(Request.Form["stylistId"]));
-//   newClient.Save();
-//   return View("ClientList", Client.GetAll());
-// }
-// [HttpGet("/clients/{stylistId}")]
-// public ActionResult ClientList(int stylistId)
-// {
-//   List<Client>  sameStylistClients = Client.FindByStylist(stylistId);
-//   return View(sameStylistClients);
-// }
