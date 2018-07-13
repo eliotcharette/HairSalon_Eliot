@@ -65,16 +65,16 @@ namespace HairSalon.Models
 
       return foundClient;
     }
-    public static List<Client> FindByStylist(int myStylist)
+    public static List<Client> FindByStylist(int stylistId)
     {
       List<Client> styleClients = new List<Client> {};
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM `clients` WHERE stylist_id = @stylist;";
+      cmd.CommandText = @"SELECT * FROM `clients` WHERE stylist_id = @thisStylist_id;";
       MySqlParameter stylist = new MySqlParameter();
-      stylist.ParameterName = "@stylist";
-      stylist.Value = myStylist;
+      stylist.ParameterName = "@thisStylist_id";
+      stylist.Value = stylistId;
       cmd.Parameters.Add(stylist);
       MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
       while(rdr.Read())

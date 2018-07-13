@@ -27,3 +27,9 @@ namespace HairSalon.Controllers
 //   newClient.Save();
 //   return View("ClientList", Client.GetAll());
 // }
+// [HttpGet("/clients/{stylistId}")]
+// public ActionResult ClientList(int stylistId)
+// {
+//   List<Client>  sameStylistClients = Client.FindByStylist(stylistId);
+//   return View(sameStylistClients);
+// }
