@@ -24,6 +24,20 @@ namespace HairSalon.Controllers
       newSpecialty.Save();
       return RedirectToAction("CreateForm", Specialty.GetAll());
     }
+    [HttpGet("/stylist/{id}/update")]
+    public ActionResult UpdateForm(int id)
+    {
+      Stylist thisStylist = Stylist.Find(id);
+      return View(thisStylist);
+    }
+
+    [HttpPost("/stylist/{id}/update")]
+    public ActionResult Update(int id)
+    {
+      Stylist thisStylist = Stylist.Find(id);
+      thisStylist.Edit(Request.Form["newName"]);
+      return RedirectToAction("Stylists");
+    }
     [HttpGet("/specialty/stylist")]
     public ActionResult Stylists()
     {
