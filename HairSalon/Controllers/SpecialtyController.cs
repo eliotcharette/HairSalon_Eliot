@@ -42,13 +42,13 @@ namespace HairSalon.Controllers
       model.Add("allSpecialties", allSpecialties);
       return View(model);
     }
-    [HttpPost("/books/{bookId}/books/new")]
-    public ActionResult AddAuthor(int bookId)
+    [HttpPost("/specialty/stylist/{Id}/new")]
+    public ActionResult AddAuthor(int Id)
     {
-      Stylist book = Stylist.Find(bookId);
-      Specialty author = Specialty.Find(int.Parse(Request.Form["author-id"]));
-      book.AddSpecialty(author);
-      return RedirectToAction("Details", new { id = bookId});
+      Stylist stylist = Stylist.Find(Id);
+      Specialty author = Specialty.Find(int.Parse(Request.Form["specialty-id"]));
+      stylist.AddSpecialty(specialty);
+      return RedirectToAction("Details", new { id = Id});
     }
   }
 }
