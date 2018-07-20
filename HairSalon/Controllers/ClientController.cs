@@ -6,10 +6,16 @@ namespace HairSalon.Controllers
 {
   public class ClientController : Controller
   {
+    [HttpGet("/client/home")]
+    public ActionResult Index()
+    {
+      return View();
+    }
     [HttpGet("/addclient")]
     public ActionResult ClientForm()
     {
-      return View();
+      List<Client>  allClient = Client.GetAll();
+      return View(allClient);
     }
     [HttpGet("/clients")]
     public ActionResult ClientList()

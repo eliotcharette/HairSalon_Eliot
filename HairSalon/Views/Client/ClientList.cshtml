@@ -3,11 +3,11 @@
 </head>
 
 
-<h2>Current Clients for this Stylist</h2>
+<h2>Client List</h2>
 <ul>
 @foreach (var client in Model)
 {
-  <li>@client.GetClient() | <a href="/clients/@client.GetStylistId()">Same Stylist</a> | <a href="/clients/@client.GetStylistId()" class="deleteAction" id="@client.GetId()">Delete</a></li>
+  <li>@client.GetClient() | <a href="/clients/@client.GetStylistId()" class="deleteAction" id="@client.GetId()">Delete</a></li>
 }
 </ul>
 
@@ -25,3 +25,6 @@
     })
   })
 </script>
+
+<h4><a href="/addclient">Add Another Client</a></h4>
+<h4><a href="/stylists">Add Client to a Stylist</a></h4>
