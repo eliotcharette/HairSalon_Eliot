@@ -140,7 +140,7 @@ namespace HairSalon.Models
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
       cmd.CommandText = @"SELECT clients.* FROM stylists
       JOIN clients_stylists ON (stylists.id = clients_stylists.stylist_id)
-      JOIN clients ON (clients_stylists.specialty_id = clients.id)
+      JOIN clients ON (clients_stylists.client_id = clients.id)
       WHERE stylists.id = @StylistId;";
 
       MySqlParameter authorIdParameter = new MySqlParameter();
@@ -155,7 +155,8 @@ namespace HairSalon.Models
       {
         int ClientId = rdr.GetInt32(0);
         string ClientTitle = rdr.GetString(1);
-        Client newClient = new Client(ClientTitle);
+        int stylistID = rdr.GetInt32(2);
+        Client newClient = new Client(ClientTitle, stylistID);
         clients.Add(newClient);
       }
       conn.Close();
@@ -220,6 +221,30 @@ namespace HairSalon.Models
       specialty_id.ParameterName = "@SpecialtyId";
       specialty_id.Value = newSpecialty.GetId();
       cmd.Parameters.Add(specialty_id);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+    public void AddClient(Client newClient)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO clients_stylists (stylist_id, client_id) VALUES (@StylistId, @ClientId);";
+
+      MySqlParameter stylist_id = new MySqlParameter();
+      stylist_id.ParameterName = "@StylistId";
+      stylist_id.Value = _id;
+      cmd.Parameters.Add(stylist_id);
+
+      MySqlParameter client_id = new MySqlParameter();
+      client_id.ParameterName = "@ClientId";
+      client_id.Value = newClient.GetId();
+      cmd.Parameters.Add(client_id);
 
       cmd.ExecuteNonQuery();
       conn.Close();
