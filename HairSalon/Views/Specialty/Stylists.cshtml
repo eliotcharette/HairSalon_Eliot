@@ -2,6 +2,6 @@
 <ul>
 @foreach (var stylist in Model)
 {
-  <li><strong>Stylist</strong>: <a href="/specialty/stylist/@stylist.GetId()">@stylist.GetStylist()</a></li>
+  <li><strong>Stylist</strong>: <a href="/specialty/stylist/@stylist.GetId()">@stylist.GetStylist()</a> | <a href="/stylist/@stylist.GetId()/update">Edit Name</a></li>
 }
 </ul>
