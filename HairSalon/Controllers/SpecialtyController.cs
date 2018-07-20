@@ -46,7 +46,7 @@ namespace HairSalon.Controllers
     public ActionResult AddAuthor(int Id)
     {
       Stylist stylist = Stylist.Find(Id);
-      Specialty author = Specialty.Find(int.Parse(Request.Form["specialty-id"]));
+      Specialty specialty = Specialty.Find(int.Parse(Request.Form["specialty-id"]));
       stylist.AddSpecialty(specialty);
       return RedirectToAction("Details", new { id = Id});
     }

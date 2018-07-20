@@ -1,11 +1,11 @@
-@using Library.Models;
+@using HairSalon.Models;
 
 <h1>Add specialties to a stylist</h1>
 <h2>Stylist: @Model["stylists"].GetStylist()</h2>
 <hr />
 @if (@Model["specialties"].Count != 0)
 {
-  <h4>Here are all the specialties:</h4>
+  <h4>Here are all the specialties for @Model["stylists"].GetStylist():</h4>
   <ul>
     @foreach (var specialty in @Model["specialties"])
     {
