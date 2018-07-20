@@ -17,21 +17,37 @@ namespace HairSalon.Tests
             DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=eliot_charette_test;";
         }
     [TestMethod]
-    public void RestaurantNameIsTrue()
+    public void StylistNameIsTrue()
     {
 
       string name = "Ashley";
-      Stylist test = new Stylist(name, "");
+      Stylist test = new Stylist(name);
       string result = test.GetStylist();
 
       Assert.AreEqual(name, result);
     }
+    [TestMethod]
+    public void Edit_UpdatesStylistNameInDatabase_String()
+    {
+      //Arrange
+      string firstStylist = "sara";
+      Stylist testStylist = new Stylist(firstStylist);
+      testStylist.Save();
+      string secondStylist = "lola";
 
+      //Act
+      testStylist.Edit(secondStylist);
+
+      string result = Stylist.Find(testStylist.GetId()).GetStylist();
+
+      //Assert
+      Assert.AreEqual(secondStylist, result);
+    }
     [TestMethod]
     public void Save_SavesToDatabase_StylistList()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Brittany", "");
+      Stylist testStylist = new Stylist("Brittany");
 
       //Act
       testStylist.Save();
@@ -46,7 +62,7 @@ namespace HairSalon.Tests
     {
       // Arrange
       List<Stylist> testList = new List<Stylist> {};
-      Stylist testStylist = new Stylist("testName", "testSpecialty");
+      Stylist testStylist = new Stylist("testName");
       testStylist.Save();
 
       // Act
