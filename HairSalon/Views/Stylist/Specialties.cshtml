@@ -1,0 +1,7 @@
+<h2>Which Specialty Would You Like to add to a stylist?</h2>
+<ul>
+@foreach (var specialty in Model)
+{
+  <li><strong>Specialty</strong>: <a href="/specialty/list/@specialty.GetId()">@specialty.GetSpecialty()</a></li>
+}
+</ul>
