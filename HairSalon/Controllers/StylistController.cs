@@ -20,7 +20,7 @@ namespace HairSalon.Controllers
     [HttpPost("/stylists")]
     public ActionResult PostStylist()
     {
-      Stylist newStylist = new Stylist(Request.Form["newStylist"], Request.Form["specialty"]);
+      Stylist newStylist = new Stylist(Request.Form["newStylist"]);
       newStylist.Save();
       return View("StylistList", Stylist.GetAll());
     }
