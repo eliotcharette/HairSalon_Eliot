@@ -16,16 +16,18 @@ Specs:
 6. *Add a specialty to a stylist*
 7. *Add a stylist to a specialty*
 8. *Edit the name of a stylist*
-9. *Delete stylists and clients*
-
-_
+9. *Delete stylists and clients*_
 
 ## Setup/Installation Requirements
 
-* _Double click the icon in your folder
+_> CREATE DATABASE to_do;
+> USE to_do;
+> CREATE TABLE categories (id serial PRIMARY KEY, name VARCHAR(255));
+> CREATE TABLE tasks (id serial PRIMARY KEY, description VARCHAR(255));
+
+ Double click the icon in your folder
    Open the MAMP server and import the database
    Navigate to the HairSalon folder and dotnet restore and then dotnet run_
-
 ## Known Bugs
 
 _No known bugs._
