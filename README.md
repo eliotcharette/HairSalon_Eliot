@@ -20,13 +20,15 @@ Specs:
 
 ## Setup/Installation Requirements
 
-_> CREATE DATABASE to_do;
-> USE to_do;
+_> CREATE DATABASE eliot_charette;
+> USE eliot_charette;
 > CREATE TABLE stylists (id serial PRIMARY KEY, stylist VARCHAR(255));
 > CREATE TABLE clients (id serial PRIMARY KEY, client VARCHAR(255));
 > CREATE TABLE specialties (id serial PRIMARY KEY, specialty VARCHAR(255));
-> CREATE TABLE clients_stylists (id serial PRIMARY KEY, client_id INT, stylist_id INT);
 > CREATE TABLE specialties_stylists (id serial PRIMARY KEY, specialty_id INT, stylist_id INT);
+
+Go to Operations:
+> Copy database (structure only) rename to eliot_charette_test;
 
  Double click the icon in your folder
    Open the MAMP server and import the database
